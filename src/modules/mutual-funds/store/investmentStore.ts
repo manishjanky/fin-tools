@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { UserInvestmentData } from '../../../types/mutual-funds';
+import type { UserInvestmentData } from '../types/mutual-funds';
 import { localStorageService } from '../utils/userMutualFundsService';
 
 interface InvestmentStore {

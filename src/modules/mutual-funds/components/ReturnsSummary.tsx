@@ -1,4 +1,4 @@
-import type { ReturnsMetrics } from '../../../types/mutual-funds';
+import type { ReturnsMetrics } from '../types/mutual-funds';
 
 interface ReturnsSummaryProps {
   selectedMetric: ReturnsMetrics;
@@ -21,12 +21,6 @@ export default function ReturnsSummary({ selectedMetric }: ReturnsSummaryProps) 
           >
             {isPositive ? '+' : ''}
             {selectedMetric.percentageReturn.toFixed(2)}%
-          </p>
-          <p
-            className={`text-2xl font-semibold ${isPositive ? 'text-green-300' : 'text-red-300'
-              }`}
-          >
-            {isPositive ? '+' : ''}₹{selectedMetric.absoluteReturn.toFixed(2)}
           </p>
         </div>
       </div>

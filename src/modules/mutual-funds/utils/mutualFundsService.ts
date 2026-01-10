@@ -2,7 +2,7 @@ import type {
   MutualFundScheme,
   SearchResult,
   SchemeHistoryResponse,
-} from "../../../types/mutual-funds";
+} from "../types/mutual-funds";
 
 const API_BASE = "https://api.mfapi.in";
 

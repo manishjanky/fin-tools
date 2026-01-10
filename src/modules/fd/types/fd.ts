@@ -1,3 +1,5 @@
+import type { FYData } from "../../../types/fy-data";
+
 export interface FDInput {
   startDate: string;
   principal: number;
@@ -7,14 +9,6 @@ export interface FDInput {
   tenureDays: number;
   compounding: 'monthly' | 'quarterly' | 'halfYearly' | 'annually';
   payoutType: 'maturity' | 'quarterly' | 'monthly';
-}
-
-export interface FYData {
-  fyYear: string;
-  startBalance: number;
-  endBalance: number;
-  interestEarned: number;
-  interestPayout?: number;
 }
 
 export interface FDSummary {

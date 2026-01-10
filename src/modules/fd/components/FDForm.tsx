@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import type { FDInput, FDSummary as FDSummaryType } from '../../../types/fd';
+import type { FDInput, FDSummary as FDSummaryType } from './../types/fd';
 import { calculateFDReturns } from '../utils/fdCalculator';
 import FDSummary from './FDSummary';
-import FDTable from './FDTable';
+import FYSummaryTable from '../../../components/common/FYSummaryTable';
 
 
 export default function FDForm() {
@@ -209,7 +209,7 @@ export default function FDForm() {
 
           {/* Results Table */}
           <section>
-            <FDTable data={summary.fyData} />
+            <FYSummaryTable data={summary.fyData} />
           </section>
         </>
       )}

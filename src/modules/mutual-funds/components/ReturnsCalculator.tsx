@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import type { NAVData, ReturnsMetrics } from '../../../types/mutual-funds';
+import type { NAVData, ReturnsMetrics } from '../types/mutual-funds';
 import Accordion from '../../../components/common/Accordion';
 import ReturnsSummary from './ReturnsSummary';
 import NAVChart from './NAVChart';

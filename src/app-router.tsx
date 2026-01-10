@@ -12,6 +12,7 @@ const MutualFunds = lazy(() => import('./modules/mutual-funds/MutualFunds'));
 const SchemeDetails = lazy(() => import('./modules/mutual-funds/SchemeDetails'));
 const MyFunds = lazy(() => import('./modules/mutual-funds/MyFunds'));
 const MyFundDetails = lazy(() => import('./modules/mutual-funds/MyFundDetails'));
+const PPF = lazy(() => import('./modules/ppf/PPF'));
 
 const Layout = () => {
     return (
@@ -94,7 +95,14 @@ const routes = [
                         ),
                     },
                 ],
-            },
+            },{
+                path: "ppf",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <PPF />
+                    </Suspense>
+                ),
+            }
         ],
     },
     {

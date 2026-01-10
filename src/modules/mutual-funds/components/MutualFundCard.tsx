@@ -1,4 +1,4 @@
-import type { MutualFundScheme } from '../../../types/mutual-funds';
+import type { MutualFundScheme } from '../types/mutual-funds';
 
 interface MutualFundCardProps {
     scheme: MutualFundScheme;

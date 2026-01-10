@@ -9,7 +9,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import type { NAVData } from '../../../types/mutual-funds';
+import type { NAVData } from '../types/mutual-funds';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 

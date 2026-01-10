@@ -18,7 +18,7 @@ export default function Home() {
             Choose Your Tool
           </h2>
           <p className="text-xl text-purple-200 max-w-2xl">
-            Select which financial planning tool you'd like to explore today.
+            Select which financial tool you'd like to explore today.
           </p>
         </section>
 
@@ -40,6 +40,15 @@ export default function Home() {
               icon="📈"
               gradient="from-blue-500 to-cyan-600"
               onClick={() => navigate('mutual-funds')}
+            />
+          </div>
+          <div className="cursor-pointer">
+            <FeatureTile
+              title="Public Provident Fund"
+              description="Calculate and analyze your Public Provident Fund returns with detailed year-wise breakdowns."
+              icon="💰"
+              gradient="from-blue-500 to-cyan-600"
+              onClick={() => navigate('ppf')}
             />
           </div>
         </section>

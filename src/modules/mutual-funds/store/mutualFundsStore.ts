@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { MutualFundScheme, SearchResult } from '../../../types/mutual-funds';
+import type { MutualFundScheme, SearchResult } from '../types/mutual-funds';
 import { fetchLatestNAV, searchMutualFunds } from '../utils/mutualFundsService';
 
 interface MutualFundsStore {

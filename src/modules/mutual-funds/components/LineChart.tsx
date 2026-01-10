@@ -11,7 +11,7 @@ import {
     Legend,
     Filler,
 } from 'chart.js';
-import type { NAVData } from '../../../types/mutual-funds';
+import type { NAVData } from '../types/mutual-funds';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 

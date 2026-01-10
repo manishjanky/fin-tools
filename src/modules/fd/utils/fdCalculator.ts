@@ -1,4 +1,4 @@
-import type { FDInput, FYData, FDSummary } from '../../../types/fd';
+import type { FDInput, FYData, FDSummary } from '../types/fd';
 
 const INDIAN_FY_MONTH = 4; // April is month 4 (0-indexed: 3)
 

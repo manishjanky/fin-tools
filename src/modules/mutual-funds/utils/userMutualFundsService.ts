@@ -1,4 +1,4 @@
-import type { UserInvestmentData } from '../../../types/mutual-funds';
+import type { UserInvestmentData } from '../types/mutual-funds';
 
 const STORAGE_KEY = 'fin-tools-my-funds';
 

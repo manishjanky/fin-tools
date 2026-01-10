@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import moment from 'moment';
-import type { NAVData } from '../../../types/mutual-funds';
+import type { NAVData } from '../types/mutual-funds';
 
 interface ChartStatisticsDisplayProps {
     navData: NAVData[];

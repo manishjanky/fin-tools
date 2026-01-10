@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import type { MutualFundScheme, SchemeHistoryResponse } from '../../types/mutual-funds';
+import type { MutualFundScheme, SchemeHistoryResponse } from './types/mutual-funds';
 import { fetchSchemeDetails, fetchSchemeHistory } from './utils/mutualFundsService';
 import Header from '../../components/common/Header';
 import ReturnsCalculator from './components/ReturnsCalculator';

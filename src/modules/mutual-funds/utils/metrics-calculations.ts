@@ -1,5 +1,5 @@
 import moment from "moment";
-import type { NAVData, ReturnsMetrics } from "../../../types/mutual-funds";
+import type { NAVData, ReturnsMetrics } from "../types/mutual-funds";
 import { TIMEFRAMES } from "./constants";
 
 // Helper function to calculate CAGR (Compound Annual Growth Rate)
