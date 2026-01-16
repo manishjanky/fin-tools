@@ -25,13 +25,13 @@ export default function PrivacyNotice() {
                             <h2 className="text-2xl font-semibold mb-4 text-text-primary">Data Collection & Storage</h2>
                             <div className="bg-bg-primary border border-border-main rounded p-4 mb-4">
                                 <p className="text-text-secondary leading-relaxed">
-                                    <strong className="text-text-primary">✓ Your data is stored locally in your browser only.</strong>
+                                    <strong className="text-text-primary">✓ Your info you capture while using the tool, is stored locally in your browser only.</strong>
                                 </p>
                             </div>
                             <ul className="space-y-3 text-text-secondary leading-relaxed">
                                 <li className="flex items-start">
                                     <span className="text-green-500 mr-3 mt-1">✓</span>
-                                    <span>All financial data you enter (FD, Mutual Funds, PPF investments) is stored exclusively in your browser's local storage</span>
+                                    <span>Any info you enter (FD, Mutual Funds, PPF investments) is stored exclusively in your browser's local storage</span>
                                 </li>
                                 <li className="flex items-start">
                                     <span className="text-green-500 mr-3 mt-1">✓</span>
