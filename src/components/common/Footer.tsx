@@ -14,7 +14,7 @@ export default function Footer() {
                         className="text-sm"
                         style={{ color: 'var(--color-text-secondary)' }}
                     >
-                        &copy; 2026 fin-tools by Manish Kumar. All rights reserved.
+                        &copy; 2026 fin2tools by Manish Kumar&copy;. All rights reserved.
                     </p>
                     <div className="flex space-x-6 mt-4 md:mt-0">
                         <a
