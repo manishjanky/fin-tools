@@ -24,7 +24,7 @@ export default function PrivacyNotice() {
                         <section>
                             <h2 className="text-2xl font-semibold mb-4 text-text-primary">Important Notice</h2>
                             <p className="text-text-secondary leading-relaxed">
-                                fin2ools is a <strong>hobby project</strong> created for personal learning and educational purposes.
+                                fin2ools is a <strong>hobby project</strong> created for personal use and purposes.
                                 This notice outlines our approach to your privacy and data handling.
                             </p>
                         </section>

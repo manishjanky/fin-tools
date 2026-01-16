@@ -26,7 +26,7 @@ function PrivacyModalContent({ onAccept, onDecline }: PrivacyModalProps) {
           <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
             <p className="text-blue-100 font-semibold mb-2">📚 Hobby Project</p>
             <p className="text-text-secondary text-sm leading-relaxed">
-              fin2ools is a <strong>hobby project</strong> created for personal purposes only. However , it is made available to the public. As they say sharing is caring.
+              fin2ools is a <strong>hobby project</strong> created for personal use and purposes only. However , it is made available to the public. As they say sharing is caring.
             </p>
           </div>
 
