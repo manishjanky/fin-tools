@@ -62,7 +62,10 @@ export async function fetchSchemeDetails(
         date: data.data[0].date,
       };
       const details = await fetchSchemeDetailsNemo(schemeDetails);
-      schemeDetails = { ...schemeDetails, details };
+      schemeDetails = {
+        ...schemeDetails,
+        details,
+      };
     }
 
     return schemeDetails;
@@ -108,15 +111,22 @@ export async function fetchSchemeHistory(
 
 export async function fetchSchemeDetailsNemo(
   scheme: MutualFundScheme,
-): Promise<MutualFundSchemeDetails | null> {
-  // Get A detailed info from CaptainNemo MF API
-  const nemoResponse = await fetch(`${NEMO_API_BASE}${scheme.isinGrowth}`);
-  // if (!nemoResponse.ok) {
-  //   throw new Error(`NEMO request failed: ${nemoResponse.status}`);
-  // }
-  let schemeDetails = await nemoResponse.json();
-  schemeDetails = convertToCamelCase<MutualFundSchemeDetails>(
-    schemeDetails?.[0],
-  );
-  return schemeDetails || null;
+): Promise<MutualFundSchemeDetails> {
+  let schemeDetails = null;
+
+  try {
+    // Get A detailed info from CaptainNemo MF API
+    const nemoResponse = await fetch(`${NEMO_API_BASE}${scheme.isinGrowth}`);
+    // if (!nemoResponse.ok) {
+    //   throw new Error(`NEMO request failed: ${nemoResponse.status}`);
+    // }
+    schemeDetails = await nemoResponse.json();
+    schemeDetails = convertToCamelCase<MutualFundSchemeDetails>(
+      schemeDetails?.[0],
+    );
+    schemeDetails.aum = schemeDetails?.aum ? schemeDetails.aum / 10 : 0;
+  } catch (error) {
+    // console.error("Error fetching scheme details from NEMO:", error);
+  }
+  return schemeDetails;
 }

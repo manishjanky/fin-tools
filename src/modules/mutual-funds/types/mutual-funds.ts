@@ -116,12 +116,8 @@ export interface MutualFundSchemeDetails {
   sipMin: number;
   sipMax: number;
   sipMultiplier: number;
-
-  /** The shape of the items in these arrays is not defined in the source JSON,
-   *  so they are typed as `any[]`. Replace with a more specific type if you know it. */
   sipDates: any[];
   upsizecodeSipDates: any[];
-
   redemptionAllowed: string;
   redemptionAmountMultiple: number;
   redemptionAmountMinimum: number;
@@ -140,14 +136,9 @@ export interface MutualFundSchemeDetails {
   switchAllowed: string;
   stpFlag: string;
   swpFlag: string;
-
-  /** Array of SIP definitions */
   sips: Sip[];
-
   instant: string;
   reinvestment: string;
-
-  /** Tags array – unknown shape, kept as `any[]` */
   tags: any[];
   slug: string;
   channelPartnerCode: string;
