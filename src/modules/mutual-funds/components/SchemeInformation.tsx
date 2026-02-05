@@ -6,6 +6,21 @@ export default function SchemeInformation({ details }: { details: MutualFundSche
             className="rounded-lg p-6 bg-bg-secondary border border-border-light"
         >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {
+                    details.investmentObjective && (<div className="md:col-span-3">
+                        <p
+                            className="text-sm mb-2 text-text-secondary"
+                        >
+                            Investment Objective
+                        </p>
+                        <p
+                            className="font-mono p-3 rounded text-text-primary bg-bg-primary border border-border-light"
+                        >
+                            {details.investmentObjective}
+                        </p>
+                    </div>
+                    )
+                }
 
                 {details.category && (<div>
                     <p

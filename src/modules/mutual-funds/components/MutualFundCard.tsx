@@ -1,20 +1,17 @@
 import { useState, useEffect } from 'react';
 import type { MutualFundScheme } from '../types/mutual-funds';
-import AddInvestmentModal from './AddInvestmentModal';
-import { useInvestmentStore } from '../store';
 import SchemeNAV from './SchemeNAV';
 import { useMutualFundsStore } from '../store/mutualFundsStore';
 import { useWatchlistStore } from '../store/watchlistStore';
+import AddToMyFunds from './AddToMyFunds';
 
 interface MutualFundCardProps {
     scheme: MutualFundScheme;
 }
 
 export default function MutualFundCard({ scheme }: MutualFundCardProps) {
-    const [showModal, setShowModal] = useState(false);
     const [oneDayChange, setOneDayChange] = useState<number | null>(null);
     const [isLoadingChange, setIsLoadingChange] = useState(true);
-    const { addInvestment } = useInvestmentStore();
     const { getOrFetchSchemeHistory } = useMutualFundsStore();
     const { addToWatchlist, removeFromWatchlist, isInWatchlist } = useWatchlistStore();
 
@@ -45,14 +42,6 @@ export default function MutualFundCard({ scheme }: MutualFundCardProps) {
         fetch1DChange();
     }, [scheme.schemeCode, getOrFetchSchemeHistory]);
 
-    const handleAddInvestment = (investment: any) => {
-        addInvestment(scheme.schemeCode, investment);
-        setShowModal(false);
-    };
-    const addToMyFunds = ($event: React.MouseEvent<HTMLElement>) => {
-        $event.stopPropagation();
-        setShowModal(true);
-    };
 
     const toggleWatchlist = ($event: React.MouseEvent<HTMLButtonElement>) => {
         $event.stopPropagation();
@@ -120,15 +109,7 @@ export default function MutualFundCard({ scheme }: MutualFundCardProps) {
                                 </div>
                                 <div>
                                     <SchemeNAV scheme={scheme} />
-                                    <div className='flex justify-end'>
-                                        <label
-                                            role='button'
-                                            onClick={addToMyFunds}
-                                            className="w-full md:w-auto p-1 text-md text-primary hover:text-primary-dark cursor-pointer transition text-center font-bold"
-                                        >
-                                            + Add to My Funds
-                                        </label>
-                                    </div>
+                                    <AddToMyFunds scheme={scheme} />
                                 </div>
                             </div>
                         </div>
@@ -136,13 +117,6 @@ export default function MutualFundCard({ scheme }: MutualFundCardProps) {
                 </div>
             </div>
 
-            <AddInvestmentModal
-                isOpen={showModal}
-                onClose={() => setShowModal(false)}
-                onSubmit={handleAddInvestment}
-                schemeName={scheme.schemeName}
-                schemeCode={scheme.schemeCode}
-            />
         </>
     );
 }

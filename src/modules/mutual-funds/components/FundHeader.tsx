@@ -1,21 +1,8 @@
-import { useState } from "react";
-import { useInvestmentStore } from "../..";
 import type { MutualFundScheme } from "../types/mutual-funds";
-import AddInvestmentModal from "./AddInvestmentModal";
 import SchemeNAV from "./SchemeNAV";
+import AddToMyFunds from "./AddToMyFunds";
 
 export default function FundHeader({ scheme, duration }: { scheme: MutualFundScheme; duration?: string }) {
-
-    const [showModal, setShowModal] = useState(false);
-    const { addInvestment } = useInvestmentStore();
-    const handleAddInvestment = (investment: any) => {
-        addInvestment(scheme.schemeCode, investment);
-        setShowModal(false);
-    }
-    function addToMyFunds($event: React.MouseEvent<HTMLElement>) {
-        $event.stopPropagation();
-        setShowModal(true);
-    }
 
     return (
         <section className="mb-4 border border-primary-lighter/30 rounded-lg p-4" >
@@ -46,25 +33,9 @@ export default function FundHeader({ scheme, duration }: { scheme: MutualFundSch
                 </div>
                 <div>
                     <SchemeNAV scheme={scheme} />
-                    <div className='flex justify-end'>
-                        <label
-                            role='button'
-                            onClick={addToMyFunds}
-                            className="w-full md:w-auto p-1 text-md text-primary hover:text-primary-dark cursor-pointer transition text-center font-bold"
-                        >
-                            + Add to My Funds
-                        </label>
-                    </div>
+                    <AddToMyFunds scheme={scheme} />
                 </div>
             </div>
-
-            <AddInvestmentModal
-                isOpen={showModal}
-                onClose={() => setShowModal(false)}
-                onSubmit={handleAddInvestment}
-                schemeName={scheme.schemeName}
-                schemeCode={scheme.schemeCode}
-            />
         </section >
     )
 }

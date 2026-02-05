@@ -1,6 +1,6 @@
 import type { CompareFunds } from "../types/mutual-funds";
 
-export default function PeerComparison({ peers }: { peers: CompareFunds[] }) {
+export default function SimilarFunds({ funds }: { funds: CompareFunds[] }) {
     return (
         <section
             className="rounded-lg p-6 bg-bg-secondary border border-border-light"
@@ -17,14 +17,14 @@ export default function PeerComparison({ peers }: { peers: CompareFunds[] }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {peers.map((peer, index) => (
+                    {funds.map((fund, index) => (
                         <tr key={index}>
-                            <td className="border border-border-light p-2">{peer.shortName}</td>
-                            <td className="border border-border-light p-2">{peer['1y']}%</td>
-                            <td className="border border-border-light p-2">{peer['3y']}%</td>
-                            <td className="border border-border-light p-2">{peer['5y']}%</td>
-                            <td className="border border-border-light p-2">₹{peer.aum} cr</td>
-                            <td className="border border-border-light p-2">{peer.expenseRatio}%</td>
+                            <td className="border border-border-light p-2">{fund.shortName}</td>
+                            <td className="border border-border-light p-2">{fund['1y']}%</td>
+                            <td className="border border-border-light p-2">{fund['3y']}%</td>
+                            <td className="border border-border-light p-2">{fund['5y']}%</td>
+                            <td className="border border-border-light p-2">₹{fund.aum} cr</td>
+                            <td className="border border-border-light p-2">{fund.expenseRatio}%</td>
                         </tr>
                     ))}
                 </tbody>

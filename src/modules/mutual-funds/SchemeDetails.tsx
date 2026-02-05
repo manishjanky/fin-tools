@@ -7,7 +7,7 @@ import ReturnsCalculator from './components/ReturnsCalculator';
 import Accordion from '../../components/common/Accordion';
 import FundHeader from './components/FundHeader';
 import SchemeInformation from './components/SchemeInformation';
-import PeerComparison from './components/PeerComparison';
+import SimilarFunds from './components/SimilarFunds';
 
 export default function SchemeDetails() {
     const { schemeCode } = useParams<{ schemeCode: string }>();
@@ -117,7 +117,7 @@ export default function SchemeDetails() {
                 {
                     scheme.details && scheme.details.comparison?.length > 0 && (
                         <Accordion title="Similar Funds" isOpen={true} >
-                            <PeerComparison peers={scheme.details.comparison} />
+                            <SimilarFunds funds={scheme.details.comparison} />
                         </Accordion>
                     )
                 }
