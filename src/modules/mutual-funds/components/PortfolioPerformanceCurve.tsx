@@ -1,3 +1,4 @@
+// million-ignore
 import { useState, useEffect, Suspense } from 'react';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
@@ -120,6 +121,7 @@ export default function PortfolioPerformanceCurve(
 
   // Validate snapshots after they're calculated
   useEffect(() => {
+    if (isLoading || !isRendered) return;
     try {
       if (!Array.isArray(snapshots)) {
         console.warn('Invalid snapshots: not an array', snapshots);
@@ -154,7 +156,7 @@ export default function PortfolioPerformanceCurve(
       console.error('Error validating snapshots:', err);
       setError(`Error processing portfolio data: ${err instanceof Error ? err.message : 'Unknown error'}`);
     }
-  }, [snapshots, snapshots.length]);
+  }, [snapshots, isLoading, isRendered]);
 
   if (error) {
     return (
@@ -420,11 +422,13 @@ export default function PortfolioPerformanceCurve(
           </p>
         </div>
 
-        <div className="mb-6 h-96">
+        <div className="mb-6 h-96 relative">
           {
-            snapshots?.length && (
+            snapshots?.length > 0 && (
               <Suspense fallback={<Loader />}>
-                <Line data={chartData} options={options} />
+                <div className='absolute top-0 left-0 right-0 bottom-0'>
+                  <Line data={chartData} options={options} />
+                </div>
               </Suspense>
             )
           }
