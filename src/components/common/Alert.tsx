@@ -3,18 +3,19 @@ import { useState, useEffect } from 'react';
 interface AlertProps {
     message: string;
     type: 'success' | 'alert' | 'warning';
-    onClose: () => void;
+    onClose?: () => void;
     autoCloseDuration?: number; // in milliseconds, 0 = manual close only
+    showCloseIcon?: boolean
 }
 
-const Alert = ({ message, type, onClose, autoCloseDuration = 10000 }: AlertProps) => {
+const Alert = ({ message, type, onClose, autoCloseDuration = 10000, showCloseIcon = true }: AlertProps) => {
     const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
         if (autoCloseDuration > 0) {
             const timer = setTimeout(() => {
                 setIsVisible(false);
-                onClose();
+                onClose && onClose();
             }, autoCloseDuration);
 
             return () => clearTimeout(timer);
@@ -74,7 +75,7 @@ const Alert = ({ message, type, onClose, autoCloseDuration = 10000 }: AlertProps
             }}
         >
             <span
-                className="flex-shrink-0 text-xl font-bold"
+                className="shrink-0 text-xl font-bold"
                 style={{ color: colors.iconColor }}
             >
                 {icon}
@@ -87,17 +88,20 @@ const Alert = ({ message, type, onClose, autoCloseDuration = 10000 }: AlertProps
                     {message}
                 </p>
             </div>
-            <button
-                onClick={() => {
-                    setIsVisible(false);
-                    onClose();
-                }}
-                className="flex-shrink-0 ml-2 text-lg font-semibold transition hover:opacity-70 bg-transparent"
-                style={{ color: colors.textColor }}
-                title="Close alert"
-            >
-                ✕
-            </button>
+            {
+                showCloseIcon && (<button
+                    onClick={() => {
+                        setIsVisible(false);
+                        onClose && onClose();
+                    }}
+                    className="shrink-0 ml-2 text-lg font-semibold transition hover:opacity-70 bg-transparent"
+                    style={{ color: colors.textColor }}
+                    title="Close alert"
+                >
+                    ✕
+                </button>)
+            }
+
         </div>
     );
 };
