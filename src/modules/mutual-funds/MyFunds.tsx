@@ -88,24 +88,27 @@ export default function MyFunds() {
       try {
         let totalInvested = 0;
         let totalCurrentValue = 0;
-        let allInvestments = [];
-        let allNavHistories = [];
+        let allInvestments: any[] = [];
+        let allNavHistories: any[] = [];
 
-        for (const { scheme, investmentData } of fundsWithDetails) {
-          const history = await getOrFetchSchemeHistory(scheme.schemeCode, 365);
-          if (history?.data && Array.isArray(history.data) && history.data.length > 0) {
-            navHistoryData.push({ schemeCode: scheme.schemeCode, data: history.data })
-          }
-          if (!history?.data || history.data.length === 0) continue;
+        const historyData = await Promise.all(
+          fundsWithDetails.map(async ({ scheme, investmentData }) => {
+            const history = await getOrFetchSchemeHistory(scheme.schemeCode, 365);
 
-          for (const investment of investmentData.investments) {
-            const value = calculateInvestmentValue(investment, history.data);
-            totalInvested += value.investedAmount;
-            totalCurrentValue += value.currentValue;
-            allInvestments.push(investment);
-          }
-          allNavHistories.push(history.data);
-        }
+            if (history?.data && Array.isArray(history.data) && history.data.length > 0) {
+              for (const investment of investmentData.investments) {
+                const value = calculateInvestmentValue(investment, history.data);
+                totalInvested += value.investedAmount;
+                totalCurrentValue += value.currentValue;
+                allInvestments.push(investment);
+              }
+              allNavHistories.push(history.data);
+
+            }
+            return { schemeCode: scheme.schemeCode, data: history?.data || [] }
+          })
+        );
+
 
         const absoluteGain = totalCurrentValue - totalInvested;
         const percentageReturn = totalInvested > 0 ? (absoluteGain / totalInvested) * 100 : 0;
@@ -117,11 +120,11 @@ export default function MyFunds() {
           const mergedNavHistory = allNavHistories
             .flat()
             .reduce((acc: typeof allNavHistories[0], current) => {
-              const exists = (acc as typeof allNavHistories[0]).some(nav => nav.date === current.date);
+              const exists = (acc as typeof allNavHistories[0]).some((nav: any) => nav.date === current.date);
               if (!exists) (acc as typeof allNavHistories[0]).push(current);
               return acc;
             }, [] as typeof allNavHistories[0])
-            .sort((a, b) => moment(a.date, 'DD-MM-YYYY').diff(moment(b.date, 'DD-MM-YYYY')));
+            .sort((a: any, b: any) => moment(a.date, 'DD-MM-YYYY').diff(moment(b.date, 'DD-MM-YYYY')));
 
           cagr = calculateCAGRForInvestments(allInvestments, mergedNavHistory);
         }
@@ -132,11 +135,11 @@ export default function MyFunds() {
           const mergedNavHistory = allNavHistories
             .flat()
             .reduce((acc: typeof allNavHistories[0], current) => {
-              const exists = (acc as typeof allNavHistories[0]).some(nav => nav.date === current.date);
+              const exists = (acc as typeof allNavHistories[0]).some((nav: any) => nav.date === current.date);
               if (!exists) (acc as typeof allNavHistories[0]).push(current);
               return acc;
             }, [] as typeof allNavHistories[0])
-            .sort((a, b) => moment(a.date, 'DD-MM-YYYY').diff(moment(b.date, 'DD-MM-YYYY')));
+            .sort((a: any, b: any) => moment(a.date, 'DD-MM-YYYY').diff(moment(b.date, 'DD-MM-YYYY')));
 
           xirr = calculateXIRR(allInvestments, mergedNavHistory);
         }
@@ -149,7 +152,7 @@ export default function MyFunds() {
           xirr,
           cagr,
         });
-        setNavHistoryData(navHistoryData)
+        setNavHistoryData(historyData);
       } catch (error) {
         console.error('Error calculating metrics:', error);
       } finally {
@@ -252,7 +255,6 @@ export default function MyFunds() {
             <section className="grid grid-cols-1 gap-6 mb-8">
               {navHistoryData?.length > 0 && fundsWithDetails.map(({ scheme, investmentData }) => {
                 const schemeNavHistory = navHistoryData.filter((schemeData) => schemeData.schemeCode === scheme.schemeCode)[0];
-
                 return (
                   <div
                     key={scheme.schemeCode}
