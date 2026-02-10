@@ -71,7 +71,7 @@ export default function MyFundsCard({ scheme, investmentData, navHistory }: MyFu
 
       {/* Investment Metrics */}
       <div
-        className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4 pt-4 border-t border-border-light"
+        className="grid grid-cols-3 md:grid-cols-5 gap-4 mt-4 pt-4 border-t border-border-light"
       >
         <div>
           <p className="text-xs mb-1 text-text-tertiary">
